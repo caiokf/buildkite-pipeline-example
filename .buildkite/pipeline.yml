@@ -1,0 +1,14 @@
+steps:
+  - name: "lint"
+    command: "make lint"
+
+  - name: "test"
+    command: "make test"
+
+  - name: "check fmt"
+    command: "make fmt"
+
+  - wait
+
+  - name: ":golang: build"
+    command: "make build"
