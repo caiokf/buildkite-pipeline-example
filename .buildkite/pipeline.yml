@@ -13,7 +13,7 @@ steps:
   - name: ":golang: build"
     command:
       - "make build"
-      - "tar -csvf build.tar.gz bin"
+      - "tar -cvf build.tar.gz bin"
     artifact_paths:
       - "build.tar.gz"
 
