@@ -33,12 +33,14 @@ steps:
   - wait
 
   - name: ":rocket: stage"
+    branches: "master"
     command:
       - "mkdir bin"
       - "buildkite-agent artifact download build.tar.gz bin/"
       - "ENV=stage make deploy"
 
   - block: "release to prod?"
+    branches: "master"
     fields:
       - text: "Code Name"
         key: "release-name"
@@ -54,6 +56,7 @@ steps:
             value: "stable"
 
   - name: ":rocket: prod"
+    branches: "master"
     command:
       - "mkdir bin"
       - "buildkite-agent artifact download build.tar.gz bin/"
