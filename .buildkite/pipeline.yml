@@ -15,5 +15,33 @@ steps:
 
   - wait
 
-  - name: ":rocket: deploy to test"
+  - name: ":rocket: test"
     command: "ENV=test make deploy"
+
+  - wait
+
+  - name: ":aws-lambda: integration tests"
+    command: "echo 'fake running integration tests'"
+
+  - wait
+
+  - name: ":rocket: stage"
+    command: "ENV=stage make deploy"
+
+  - block: "release to prod?"
+    fields:
+      - text: "Code Name"
+        key: "release-name"
+        hint: "What’s the code name for this release? :name_badge:"
+        required: false
+        default: "Release #"
+      - select: "Stream"
+        key: "release-stream"
+        options:
+          - label: "Beta"
+            value: "beta"
+          - label: "Stable"
+            value: "stable"
+
+  - name: ":rocket: prod"
+    command: "ENV=prod make deploy"
