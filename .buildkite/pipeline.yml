@@ -12,6 +12,8 @@ steps:
 
   - name: ":golang: build"
     command: "make build"
+    artifact_paths:
+      - "bin/*"
 
   - wait
 
