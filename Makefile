@@ -28,6 +28,10 @@ lint: ## Run go lint
 	$(call HL,lint)
 	F=$(F) scripts/lint.sh `find . -name "*.go"`
 
+deploy: ## Deploy the app to a specific env
+	$(call HL,deploy)
+	F=$(F) scripts/deploy.sh $(ARGS)
+
 test: ## Run unit tests with ARGS=<go_test_args>
 	$(call HL,test)
 	@go test -count=1 $(ARGS) `go list ./... | grep -v node_modules`

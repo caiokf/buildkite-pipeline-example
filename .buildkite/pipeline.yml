@@ -12,3 +12,8 @@ steps:
 
   - name: ":golang: build"
     command: "make build"
+
+  - wait
+
+  - name: ":rocket: deploy to test"
+    command: "ENV=test make deploy"
