@@ -20,7 +20,10 @@ steps:
   - wait
 
   - name: ":rocket: test"
-    command: "ENV=test make deploy"
+    command:
+      - "mkdir bin"
+      - "buildkite-agent artifact download build.tar.gz bin/"
+      - "ENV=test make deploy"
 
   - wait
 
@@ -30,7 +33,10 @@ steps:
   - wait
 
   - name: ":rocket: stage"
-    command: "ENV=stage make deploy"
+    command:
+      - "mkdir bin"
+      - "buildkite-agent artifact download build.tar.gz bin/"
+      - "ENV=stage make deploy"
 
   - block: "release to prod?"
     fields:
@@ -48,4 +54,7 @@ steps:
             value: "stable"
 
   - name: ":rocket: prod"
-    command: "ENV=prod make deploy"
+    command:
+      - "mkdir bin"
+      - "buildkite-agent artifact download build.tar.gz bin/"
+      - "ENV=prod make deploy"
