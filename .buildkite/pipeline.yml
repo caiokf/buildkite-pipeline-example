@@ -11,9 +11,11 @@ steps:
   - wait
 
   - name: ":golang: build"
-    command: "make build"
+    command:
+      - "make build"
+      - "tar -csvf build.tar.gz bin"
     artifact_paths:
-      - "bin/*"
+      - "build.tar.gz"
 
   - wait
 

@@ -4,3 +4,4 @@ _warmup
 /bin
 /node_modules
 package-lock.json
+build.tar.gz

@@ -3,6 +3,7 @@ set -e
 
 if [ -z "$F" ]; then
 	rm -rf bin
+  rm build.tar.gz
 	exit 0
 fi
 
